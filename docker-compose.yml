@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  javier-app:
+    image: javier:1.0.1
+    container_name: javier-container
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    restart: unless-stopped
