@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  pgvillarroel:
+    image: pgjavier:1.0.1
+    build: .
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.pgvillarroel.entrypoints=http"
+        - "traefik.http.routers.pgvillarroel.rule=Host(pgvillarroel.byronrm.com)"
+        - "traefik.http.middlewares.pgvillarroel-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.pgvillarroel.middlewares=pgvillarroel-https-redirect"
+        - "traefik.http.routers.pgvillarroel-secure.entrypoints=https"
+        - "traefik.http.routers.pgvillarroel-secure.rule=Host(pgvillarroel.byronrm.com)"
+        - "traefik.http.routers.pgvillarroel-secure.tls=true"
+        - "traefik.http.routers.pgvillarroel-secure.tls.certresolver=http"
+        - "traefik.http.routers.pgvillarroel-secure.service=pgvillarroel"
+        - "traefik.http.services.pgvillarroel.loadbalancer.server.port=80"
+        - "traefik.docker.network=traefik-public"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
