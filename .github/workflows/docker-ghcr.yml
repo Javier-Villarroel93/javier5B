@@ -67,7 +67,7 @@ jobs:
           target: "/home/${{ secrets.VPS_USER }}/automatizar"
 
       - name: Deploy del servidor
-        uses: appleboy/ssh-action@v1        # ← CORREGIDO: este sí acepta script
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.VPS_HOST }}
           port: ${{ secrets.VPS_SSH_PORT }}
@@ -77,4 +77,5 @@ jobs:
             echo "Deployando los servidores"
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u javier-villarroel93 --password-stdin
-            docker pull ghcr.io/javier-villarroel93/$IMAGE_NAME_LOWER:latest
+
+            docker pull ghcr.io/javier-villarroel93/javier5b:latest
