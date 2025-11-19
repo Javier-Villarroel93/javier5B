@@ -76,5 +76,5 @@ jobs:
           script: |
             echo "Deployando los servidores"
 
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u Javier-Villarroel93 --password-stdin
-            docker pull ghcr.io/Javier-Villarroel93/$IMAGE_NAME_LOWER:latest
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u javier-villarroel93 --password-stdin
+            docker pull ghcr.io/javier-villarroel93/$IMAGE_NAME_LOWER:latest
